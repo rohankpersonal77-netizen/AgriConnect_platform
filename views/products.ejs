@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Products | AgriConnect</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🌾 AgriConnect
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/products">
+                Products
+            </a>
+
+            <a href="#">
+                About
+            </a>
+
+            <a href="#">
+                Contact
+            </a>
+
+        </div>
+
+        <div class="nav-actions">
+
+            <a href="#" class="login">
+                Login
+            </a>
+
+            <a href="#" class="register">
+                Register
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================= PRODUCTS HEADER ================= -->
+
+    <section class="products-header">
+
+        <span>
+            FARM MARKETPLACE
+        </span>
+
+        <h1>
+            Fresh Products From Farmers
+        </h1>
+
+        <p>
+            Discover fresh agricultural products
+            directly from local farmers.
+        </p>
+
+    </section>
+
+
+    <!-- ================= SEARCH & FILTER ================= -->
+
+    <section class="product-controls">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="🔍 Search products..."
+        >
+
+
+        <div class="category-filter">
+
+            <button
+                class="filter-btn active"
+                data-category="all">
+
+                All
+
+            </button>
+
+
+            <button
+                class="filter-btn"
+                data-category="fruits">
+
+                🍎 Fruits
+
+            </button>
+
+
+            <button
+                class="filter-btn"
+                data-category="vegetables">
+
+                🥬 Vegetables
+
+            </button>
+
+
+            <button
+                class="filter-btn"
+                data-category="grains">
+
+                🌾 Grains
+
+            </button>
+
+
+            <button
+                class="filter-btn"
+                data-category="pulses">
+
+                🫘 Pulses
+
+            </button>
+
+
+            <button
+                class="filter-btn"
+                data-category="spices">
+
+                🌶️ Spices
+
+            </button>
+
+
+            <button
+                class="filter-btn"
+                data-category="flowers">
+
+                🌸 Flowers
+
+            </button>
+
+
+            <button
+                class="filter-btn"
+                data-category="dairy">
+
+                🥛 Dairy
+
+            </button>
+
+
+            <button
+                class="filter-btn"
+                data-category="oil seeds">
+
+                🌻 Oil Seeds
+
+            </button>
+
+            <button class="filter-btn" data-category="dry fruits">
+                🥜 Dry Fruits
+            </button>
+
+            <button class="filter-btn" data-category="nuts">
+                🌰 Nuts
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= PRODUCTS ================= -->
+
+    <section class="products" id="productGrid">
+
+
+        <% products.forEach(product => { %>
+
+
+            <div
+                class="product-card"
+                data-category="<%= product.category.toLowerCase() %>"
+            >
+
+
+                <!-- PRODUCT IMAGE -->
+
+                <div class="product-image">
+
+                    <img
+                        src="<%= product.image %>"
+                        alt="<%= product.name %>"
+                    >
+
+                    <span class="product-tag">
+                        Fresh
+                    </span>
+
+                </div>
+
+
+                <!-- PRODUCT CONTENT -->
+
+                <div class="product-content">
+
+
+                    <span class="product-category">
+
+                        <%= product.category %>
+
+                    </span>
+
+
+                    <h2>
+
+                        <%= product.name %>
+
+                    </h2>
+
+
+                    <p>
+
+                        <%= product.description %>
+
+                    </p>
+
+
+                    <div class="product-bottom">
+
+
+                        <strong>
+
+                            ₹<%= product.price %> / kg
+
+                        </strong>
+
+
+                        <a
+                            href="/products/<%= product.name.toLowerCase() %>"
+                            class="view-btn">
+
+                            View Product →
+
+                        </a>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        <% }) %>
+
+
+    </section>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <h2>
+            🌾 AgriConnect
+        </h2>
+
+        <p>
+            Connecting Farmers Directly With Buyers.
+        </p>
+
+        <p class="copyright">
+            © 2026 AgriConnect.
+        </p>
+
+    </footer>
+
+
+    <script src="/js/products.js"></script>
+
+</body>
+
+</html>

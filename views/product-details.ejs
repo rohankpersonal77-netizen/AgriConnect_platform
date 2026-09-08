@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title><%= product.name %> | AgriConnect</title>
+
+    <link rel="stylesheet"
+          href="/css/style.css">
+
+</head>
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🌾 AgriConnect
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/products">
+                Products
+            </a>
+
+            <a href="#">
+                About
+            </a>
+
+            <a href="#">
+                Contact
+            </a>
+
+        </div>
+
+        <div class="nav-actions">
+
+            <a href="#" class="login">
+                Login
+            </a>
+
+            <a href="#" class="register">
+                Register
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================= PRODUCT DETAILS ================= -->
+
+    <main class="product-details">
+
+
+        <!-- PRODUCT IMAGE -->
+
+        <div class="details-image">
+
+            <img
+                src="<%= product.image %>"
+                alt="<%= product.name %>"
+            >
+
+        </div>
+
+
+        <!-- PRODUCT INFORMATION -->
+
+        <div class="details-content">
+
+            <span class="details-category">
+                <%= product.category %>
+            </span>
+
+
+            <h1>
+                <%= product.name %>
+            </h1>
+
+
+            <div class="rating">
+
+                ⭐⭐⭐⭐⭐
+
+                <span>
+                    4.8 (32 Reviews)
+                </span>
+
+            </div>
+
+
+            <div class="details-price">
+
+                ₹<%= product.price %>
+
+                <span>
+                    / kg
+                </span>
+
+            </div>
+
+
+            <div class="total-price">
+
+                Total:
+
+                <strong id="totalPrice">
+                    ₹<%= product.price %>
+                </strong>
+
+            </div>
+
+
+            <p class="details-description">
+
+                <%= product.description %>
+
+            </p>
+
+
+            <!-- PRODUCT INFORMATION -->
+
+            <div class="product-info">
+
+                <div>
+
+                    <span>
+                        Available Quantity
+                    </span>
+
+                    <strong>
+                        500 kg
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Location
+                    </span>
+
+                    <strong>
+                        📍 Pune, Maharashtra
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Farming Method
+                    </span>
+
+                    <strong>
+                        🌱 Natural Farming
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- FARMER -->
+
+            <div class="farmer">
+
+                <div class="farmer-avatar">
+                    👨‍🌾
+                </div>
+
+                <div>
+
+                    <span>
+                        Sold by
+                    </span>
+
+                    <h3>
+                        Ramesh Patil
+                    </h3>
+
+                    <p>
+                        Farmer • Pune, Maharashtra
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUANTITY -->
+
+            <div class="quantity-section">
+
+                <label>
+                    Quantity
+                </label>
+
+                <div class="quantity-control">
+
+                    <button
+                        id="decreaseBtn"
+                        type="button">
+                        −
+                    </button>
+
+                    <span id="quantity">
+                        1
+                    </span>
+
+                    <span>
+                        kg
+                    </span>
+
+                    <button
+                        id="increaseBtn"
+                        type="button">
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ACTION BUTTONS -->
+
+            <div class="action-buttons">
+
+                <button
+                    id="addToCartBtn"
+                    type="button">
+
+                    🛒 Add to Cart
+
+                </button>
+
+                <button
+                    id="buyNowBtn"
+                    type="button">
+
+                    Buy Now
+
+                </button>
+
+            </div>
+
+
+            <p
+                id="cartMessage"
+                class="cart-message">
+            </p>
+
+
+            <button class="wishlist-btn">
+
+                ♡ Add to Wishlist
+
+            </button>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <h2>
+            🌾 AgriConnect
+        </h2>
+
+        <p>
+            Connecting Farmers Directly With Buyers.
+        </p>
+
+        <p class="copyright">
+            © 2026 AgriConnect.
+        </p>
+
+    </footer>
+
+
+    <!-- PRODUCT PRICE FOR JAVASCRIPT -->
+
+    <script>
+
+        const productPrice = <%= product.price %>;
+
+    </script>
+
+
+    <!-- YOUR EXISTING JAVASCRIPT -->
+
+<script src="/js/product-details.js"></script>
+
+<script src="/js/cart-add.js"></script>
+</body>
+
+</html>

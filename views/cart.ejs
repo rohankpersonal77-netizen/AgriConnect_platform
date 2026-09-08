@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>AgriConnect - Cart</title>
+
+    <link rel="stylesheet"
+        href="/css/style.css">
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            AgriConnect
+        </div>
+
+        <nav>
+
+            <a href="/">Home</a>
+
+            <a href="/products">Products</a>
+
+            <a href="/cart" class="active">
+                Cart 🛒
+            </a>
+
+        </nav>
+
+        <div class="nav-actions">
+
+            <a href="/login">
+                Login
+            </a>
+
+            <a href="/register"
+                class="register-btn">
+                Register
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- CART -->
+
+    <main class="cart-page">
+
+        <div class="cart-header">
+
+            <h1>
+                Your Shopping Cart
+            </h1>
+
+            <p>
+                Review your fresh products before checkout.
+            </p>
+
+        </div>
+
+
+        <div class="cart-layout">
+
+
+            <!-- PRODUCTS -->
+
+            <section class="cart-products">
+
+                <div class="cart-section-title">
+
+                    <h2>
+                        Cart Items
+                    </h2>
+
+                    <span id="cartCount">
+                        0 items
+                    </span>
+
+                </div>
+
+
+                <div id="cartContainer">
+
+                    <!-- Products will appear here -->
+
+                </div>
+
+            </section>
+
+
+            <!-- SUMMARY -->
+
+            <aside class="cart-summary">
+
+                <h2>
+                    Order Summary
+                </h2>
+
+                <div class="summary-row">
+
+                    <span>
+                        Subtotal
+                    </span>
+
+                    <strong id="subtotal">
+                        ₹0
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Delivery
+                    </span>
+
+                    <strong>
+                        Free
+                    </strong>
+
+                </div>
+
+
+                <hr>
+
+
+                <div class="summary-total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong id="cartTotal">
+                        ₹0
+                    </strong>
+
+                </div>
+
+
+                <button
+                    id="checkoutBtn"
+                    class="checkout-btn">
+
+                    Proceed to Checkout →
+
+                </button>
+
+
+                <a href="/products"
+                    class="continue-shopping">
+
+                    ← Continue Shopping
+
+                </a>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+
+    <script src="/js/cart.js"></script>
+
+</body>
+
+</html>
