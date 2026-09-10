@@ -22,9 +22,12 @@
 
     <nav class="navbar">
 
-        <div class="logo">
-            🌾 AgriConnect
-        </div>
+        <a href="/" class="logo-link">
+            <div class="logo">
+                <img src="/images/logo.svg" alt="AgriConnect Logo" class="brand-icon">
+                <span>AgriConnect</span>
+            </div>
+        </a>
 
         <div class="nav-links">
 
@@ -32,27 +35,27 @@
                 Home
             </a>
 
-            <a href="/products">
+            <a href="/products" class="active">
                 Products
             </a>
 
-            <a href="#">
+            <a href="/about">
                 About
             </a>
 
-            <a href="#">
+            <a href="/contact">
                 Contact
             </a>
 
         </div>
 
-        <div class="nav-actions">
+        <div class="nav-buttons">
 
-            <a href="#" class="login">
+            <a href="/login" class="login-btn">
                 Login
             </a>
 
-            <a href="#" class="register">
+            <a href="/register" class="register-btn">
                 Register
             </a>
 
@@ -284,7 +287,7 @@
     <footer>
 
         <h2>
-            🌾 AgriConnect
+            <img src="/images/logo.svg" alt="AgriConnect" class="footer-logo-icon"> AgriConnect
         </h2>
 
         <p>
@@ -292,7 +295,7 @@
         </p>
 
         <p class="copyright">
-            © 2026 AgriConnect.
+            © 2026 AgriConnect. All rights reserved.
         </p>
 
     </footer>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | AgriConnect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="contact-page">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/" class="logo-link">
+            <div class="logo">
+                <img src="/images/logo.svg" alt="AgriConnect Logo" class="brand-icon">
+                <span>AgriConnect</span>
+            </div>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/products">Products</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact" class="active">Contact</a></li>
+        </ul>
+
+        <div class="nav-buttons">
+            <a href="/login" class="login-btn">Login</a>
+            <a href="/register" class="register-btn">Register</a>
+        </div>
+    </nav>
+
+    <!-- Contact Hero -->
+    <section class="contact-hero">
+        <div class="contact-hero-content">
+            <span class="badge-pill">WE'RE HERE TO HELP</span>
+            <h1>Get in Touch with <span>AgriConnect</span></h1>
+            <p>Have questions about buying fresh produce or listing your farm harvest? Our support team and farmer relations center are ready to assist you.</p>
+        </div>
+    </section>
+
+    <!-- Main Contact Section -->
+    <section class="contact-section">
+        <div class="contact-container">
+            
+            <!-- Contact Info Cards -->
+            <div class="contact-info-column">
+                <div class="info-card-header">
+                    <h2>Reach Out Directly</h2>
+                    <p>Connect with our dedicated support staff across Maharashtra and India.</p>
+                </div>
+
+                <div class="contact-detail-card">
+                    <div class="detail-icon">📞</div>
+                    <div class="detail-content">
+                        <h3>Farmer Helpline (Toll-Free)</h3>
+                        <p><strong>1800-247-4266 (1800-AGRI-CONNECT)</strong></p>
+                        <small>Available Mon - Sat: 7:00 AM - 8:00 PM</small>
+                    </div>
+                </div>
+
+                <div class="contact-detail-card">
+                    <div class="detail-icon">✉️</div>
+                    <div class="detail-content">
+                        <h3>Email Assistance</h3>
+                        <p><strong>support@agriconnect.org</strong></p>
+                        <small>For general inquiries, orders & billing</small>
+                    </div>
+                </div>
+
+                <div class="contact-detail-card">
+                    <div class="detail-icon">📍</div>
+                    <div class="detail-content">
+                        <h3>Headquarters & Agri Hub</h3>
+                        <p><strong>AgriConnect Tech Park, Sector 15</strong></p>
+                        <small>Shivajinagar, Pune, Maharashtra 411005</small>
+                    </div>
+                </div>
+
+                <div class="contact-detail-card highlight-card">
+                    <div class="detail-icon">🚜</div>
+                    <div class="detail-content">
+                        <h3>Are you a farmer?</h3>
+                        <p>We provide free onboarding and digital listing assistance for all local farmers.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form Card -->
+            <div class="contact-form-column">
+                <div class="contact-form-card">
+                    <h3>Send Us a Message</h3>
+                    
+                    <% if (typeof success !== 'undefined' && success) { %>
+                        <div class="auth-alert alert-success">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            <span><%= success %></span>
+                        </div>
+                    <% } %>
+
+                    <form action="/contact" method="POST" class="auth-form">
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <div class="input-wrapper">
+                                    <span class="input-icon">👤</span>
+                                    <input type="text" id="name" name="name" placeholder="e.g. Anand Shinde" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <div class="input-wrapper">
+                                    <span class="input-icon">✉️</span>
+                                    <input type="email" id="email" name="email" placeholder="anand@example.com" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <div class="input-wrapper">
+                                    <span class="input-icon">📞</span>
+                                    <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="userRole">I am a...</label>
+                                <div class="input-wrapper select-wrapper">
+                                    <span class="input-icon">🏷️</span>
+                                    <select id="userRole" name="userRole" required>
+                                        <option value="farmer">Farmer 🌾</option>
+                                        <option value="buyer">Individual Buyer 🛒</option>
+                                        <option value="wholesaler">Wholesaler / Business 🏬</option>
+                                        <option value="other">Other Inquiry 💬</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">📌</span>
+                                <input type="text" id="subject" name="subject" placeholder="e.g. Inquiry about organic wheat listing" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Write your message or question here..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="auth-submit-btn">
+                            <span>Send Message</span>
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section class="faq-section">
+        <div class="section-heading text-center">
+            <span class="section-tag">GOT QUESTIONS?</span>
+            <h2>Frequently Asked Questions</h2>
+        </div>
+
+        <div class="faq-container">
+            <details class="faq-item" open>
+                <summary>How do farmers list their products on AgriConnect?</summary>
+                <p>Farmers can simply create a free account, choose "Farmer" role, click on "Sell Your Products", add photos, select produce category, price per kg, and total quantity available. The listing goes live instantly!</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>How is food quality and freshness guaranteed?</summary>
+                <p>Orders placed on AgriConnect are communicated directly to local farmers who harvest the produce on demand. We perform quality verification and handle temperature-controlled logistics.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>Are there any hidden middleman commissions?</summary>
+                <p>No. AgriConnect is 100% transparent. Farmers receive the full listing price they set, and buyers see clear itemized prices with zero hidden charges.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>What payment options are supported?</summary>
+                <p>We accept UPI, Net Banking, Credit/Debit cards, and Cash on Delivery (COD) for verified local buyers.</p>
+            </details>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <h2><img src="/images/logo.svg" alt="AgriConnect" class="footer-logo-icon"> AgriConnect</h2>
+        <p>Connecting Farmers Directly With Buyers.</p>
+        <p class="copyright">© 2026 AgriConnect. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

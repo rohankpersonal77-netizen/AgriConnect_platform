@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | AgriConnect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="auth-page">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/" class="logo-link">
+            <div class="logo">
+                <img src="/images/logo.svg" alt="AgriConnect Logo" class="brand-icon">
+                <span>AgriConnect</span>
+            </div>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/products">Products</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+
+        <div class="nav-buttons">
+            <a href="/login" class="login-btn">Login</a>
+            <a href="/register" class="register-btn active">Register</a>
+        </div>
+    </nav>
+
+    <!-- Main Auth Container -->
+    <main class="auth-container">
+        <div class="auth-card register-card">
+            
+            <!-- Auth Header -->
+            <div class="auth-header">
+                <div class="auth-badge-icon">
+                    <img src="/images/logo.svg" alt="AgriConnect Logo">
+                </div>
+                <h2>Create Your Account</h2>
+                <p>Join the direct farm-to-market marketplace</p>
+            </div>
+
+            <!-- Server Flash Messages -->
+            <% if (typeof error !== 'undefined' && error) { %>
+                <div class="auth-alert alert-error">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    <span><%= error %></span>
+                </div>
+            <% } %>
+
+            <!-- Register Form -->
+            <form action="/register" method="POST" class="auth-form" id="registerForm">
+                
+                <!-- Role Selection Tabs -->
+                <div class="form-group">
+                    <label class="section-label">Select Your Account Type</label>
+                    <div class="role-selector big-selector">
+                        <label class="role-option active" data-role="farmer">
+                            <input type="radio" name="role" value="farmer" checked>
+                            <span class="role-icon">🌾</span>
+                            <div class="role-info">
+                                <strong>Farmer</strong>
+                                <small>List & sell products directly</small>
+                            </div>
+                        </label>
+
+                        <label class="role-option" data-role="buyer">
+                            <input type="radio" name="role" value="buyer">
+                            <span class="role-icon">🛒</span>
+                            <div class="role-info">
+                                <strong>Buyer</strong>
+                                <small>Purchase fresh farm produce</small>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Full Name -->
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">👤</span>
+                        <input type="text" id="fullName" name="fullName" placeholder="e.g. Ramesh Patel" required autocomplete="name">
+                    </div>
+                </div>
+
+                <!-- Grid Row: Email & Phone -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">✉️</span>
+                            <input type="email" id="email" name="email" placeholder="ramesh@example.com" required autocomplete="email">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">📞</span>
+                            <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" required autocomplete="tel">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dynamic Role-Specific Field -->
+                <div class="form-group" id="farmerLocationGroup">
+                    <label for="farmLocation">Farm Location / Region</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">🚜</span>
+                        <input type="text" id="farmLocation" name="farmLocation" placeholder="e.g. Nashik, Maharashtra" autocomplete="street-address">
+                    </div>
+                </div>
+
+                <div class="form-group hidden" id="buyerAddressGroup">
+                    <label for="address">Delivery Address / Business City</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">📍</span>
+                        <input type="text" id="address" name="address" placeholder="e.g. Bandra West, Mumbai" autocomplete="street-address">
+                    </div>
+                </div>
+
+                <!-- Grid Row: Password & Confirm Password -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔒</span>
+                            <input type="password" id="password" name="password" placeholder="At least 6 characters" required autocomplete="new-password" minlength="6">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔑</span>
+                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter password" required autocomplete="new-password" minlength="6">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Error container for JS validation -->
+                <div class="client-error-box hidden" id="clientErrorBox"></div>
+
+                <!-- Terms Checkbox -->
+                <div class="form-options">
+                    <label class="checkbox-container">
+                        <input type="checkbox" name="terms" id="terms" required>
+                        <span class="checkmark"></span>
+                        I agree to AgriConnect <a href="#" class="terms-link">Terms of Service</a> & <a href="#" class="terms-link">Privacy Policy</a>
+                    </label>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="auth-submit-btn">
+                    <span>Create AgriConnect Account</span>
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </button>
+
+            </form>
+
+            <!-- Auth Footer Link -->
+            <div class="auth-card-footer">
+                <p>Already have an AgriConnect account? <a href="/login">Log In</a></p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <h2><img src="/images/logo.svg" alt="AgriConnect" class="footer-logo-icon"> AgriConnect</h2>
+        <p>Connecting Farmers Directly With Buyers.</p>
+        <p class="copyright">© 2026 AgriConnect. All rights reserved.</p>
+    </footer>
+
+    <script src="/js/auth.js"></script>
+</body>
+</html>

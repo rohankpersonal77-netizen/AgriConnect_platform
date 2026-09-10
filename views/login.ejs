@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | AgriConnect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="auth-page">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/" class="logo-link">
+            <div class="logo">
+                <img src="/images/logo.svg" alt="AgriConnect Logo" class="brand-icon">
+                <span>AgriConnect</span>
+            </div>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/products">Products</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+
+        <div class="nav-buttons">
+            <a href="/login" class="login-btn active">Login</a>
+            <a href="/register" class="register-btn">Register</a>
+        </div>
+    </nav>
+
+    <!-- Main Auth Container -->
+    <main class="auth-container">
+        <div class="auth-card">
+            
+            <!-- Auth Header -->
+            <div class="auth-header">
+                <div class="auth-badge-icon">
+                    <img src="/images/logo.svg" alt="AgriConnect Logo">
+                </div>
+                <h2>Welcome Back!</h2>
+                <p>Log in to access your AgriConnect account</p>
+            </div>
+
+            <!-- Server Flash Messages -->
+            <% if (typeof error !== 'undefined' && error) { %>
+                <div class="auth-alert alert-error">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    <span><%= error %></span>
+                </div>
+            <% } %>
+            <% if (typeof success !== 'undefined' && success) { %>
+                <div class="auth-alert alert-success">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <span><%= success %></span>
+                </div>
+            <% } %>
+
+            <!-- Login Form -->
+            <form action="/login" method="POST" class="auth-form" id="loginForm">
+                
+                <!-- Role Preference (Visual toggle) -->
+                <div class="role-selector">
+                    <label class="role-option active" data-role="buyer">
+                        <input type="radio" name="loginRole" value="buyer" checked>
+                        <span class="role-icon">🛒</span>
+                        <span class="role-text">Buyer</span>
+                    </label>
+                    <label class="role-option" data-role="farmer">
+                        <input type="radio" name="loginRole" value="farmer">
+                        <span class="role-icon">🌾</span>
+                        <span class="role-text">Farmer</span>
+                    </label>
+                </div>
+
+                <!-- Email Input -->
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">✉️</span>
+                        <input type="email" id="email" name="email" placeholder="name@example.com" required autocomplete="email">
+                    </div>
+                </div>
+
+                <!-- Password Input -->
+                <div class="form-group">
+                    <div class="label-row">
+                        <label for="password">Password</label>
+                        <a href="#" class="forgot-link">Forgot password?</a>
+                    </div>
+                    <div class="input-wrapper">
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required autocomplete="current-password">
+                        <button type="button" class="toggle-password" id="togglePasswordBtn" title="Show/Hide Password">
+                            👁️
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Options Row -->
+                <div class="form-options">
+                    <label class="checkbox-container">
+                        <input type="checkbox" name="remember" id="remember">
+                        <span class="checkmark"></span>
+                        Remember me for 30 days
+                    </label>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="auth-submit-btn">
+                    <span>Log In to Account</span>
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </button>
+
+                <!-- Quick Demo Fill Buttons -->
+                <div class="demo-login-box">
+                    <p class="demo-title">Quick Demo Login:</p>
+                    <div class="demo-buttons">
+                        <button type="button" class="demo-btn" id="demoFarmerBtn">
+                            🌾 Demo Farmer
+                        </button>
+                        <button type="button" class="demo-btn" id="demoBuyerBtn">
+                            🛒 Demo Buyer
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+
+            <!-- Auth Footer Link -->
+            <div class="auth-card-footer">
+                <p>Don't have an account yet? <a href="/register">Create Account</a></p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <h2><img src="/images/logo.svg" alt="AgriConnect" class="footer-logo-icon"> AgriConnect</h2>
+        <p>Connecting Farmers Directly With Buyers.</p>
+        <p class="copyright">© 2026 AgriConnect. All rights reserved.</p>
+    </footer>
+
+    <script src="/js/auth.js"></script>
+</body>
+</html>

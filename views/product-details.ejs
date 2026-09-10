@@ -5,26 +5,34 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title><%= product.name %> | AgriConnect</title>
+    <title>
+        <%= product.name %> | AgriConnect
+    </title>
 
-    <link rel="stylesheet"
-          href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 
 </head>
 
 <body>
 
-
     <!-- ================= NAVBAR ================= -->
 
     <nav class="navbar">
 
-        <div class="logo">
-            🌾 AgriConnect
-        </div>
+        <a href="/" class="logo-link">
+
+            <div class="logo">
+
+                <img src="/images/logo.svg" alt="AgriConnect Logo" class="brand-icon">
+
+                <span>AgriConnect</span>
+
+            </div>
+
+        </a>
+
 
         <div class="nav-links">
 
@@ -36,23 +44,24 @@
                 Products
             </a>
 
-            <a href="#">
+            <a href="/about">
                 About
             </a>
 
-            <a href="#">
+            <a href="/contact">
                 Contact
             </a>
 
         </div>
 
-        <div class="nav-actions">
 
-            <a href="#" class="login">
+        <div class="nav-buttons">
+
+            <a href="/login" class="login-btn">
                 Login
             </a>
 
-            <a href="#" class="register">
+            <a href="/register" class="register-btn">
                 Register
             </a>
 
@@ -66,19 +75,16 @@
     <main class="product-details">
 
 
-        <!-- PRODUCT IMAGE -->
+        <!-- ================= PRODUCT IMAGE ================= -->
 
         <div class="details-image">
 
-            <img
-                src="<%= product.image %>"
-                alt="<%= product.name %>"
-            >
+            <img src="<%= product.image %>" alt="<%= product.name %>">
 
         </div>
 
 
-        <!-- PRODUCT INFORMATION -->
+        <!-- ================= PRODUCT INFORMATION ================= -->
 
         <div class="details-content">
 
@@ -92,9 +98,13 @@
             </h1>
 
 
+            <!-- ================= RATING ================= -->
+
             <div class="rating">
 
-                ⭐⭐⭐⭐⭐
+                <span>
+                    ⭐⭐⭐⭐⭐
+                </span>
 
                 <span>
                     4.8 (32 Reviews)
@@ -103,16 +113,20 @@
             </div>
 
 
+            <!-- ================= PRICE ================= -->
+
             <div class="details-price">
 
                 ₹<%= product.price %>
 
-                <span>
-                    / kg
-                </span>
+                    <span>
+                        / kg
+                    </span>
 
             </div>
 
+
+            <!-- ================= TOTAL PRICE ================= -->
 
             <div class="total-price">
 
@@ -125,6 +139,8 @@
             </div>
 
 
+            <!-- ================= DESCRIPTION ================= -->
+
             <p class="details-description">
 
                 <%= product.description %>
@@ -132,7 +148,7 @@
             </p>
 
 
-            <!-- PRODUCT INFORMATION -->
+            <!-- ================= PRODUCT INFO ================= -->
 
             <div class="product-info">
 
@@ -177,7 +193,7 @@
             </div>
 
 
-            <!-- FARMER -->
+            <!-- ================= FARMER ================= -->
 
             <div class="farmer">
 
@@ -204,33 +220,33 @@
             </div>
 
 
-            <!-- QUANTITY -->
+            <!-- ================= QUANTITY ================= -->
 
             <div class="quantity-section">
 
-                <label>
+                <label for="quantity">
                     Quantity
                 </label>
 
+
                 <div class="quantity-control">
 
-                    <button
-                        id="decreaseBtn"
-                        type="button">
+                    <button id="decreaseBtn" type="button" aria-label="Decrease quantity">
                         −
                     </button>
+
 
                     <span id="quantity">
                         1
                     </span>
 
+
                     <span>
                         kg
                     </span>
 
-                    <button
-                        id="increaseBtn"
-                        type="button">
+
+                    <button id="increaseBtn" type="button" aria-label="Increase quantity">
                         +
                     </button>
 
@@ -239,39 +255,31 @@
             </div>
 
 
-            <!-- ACTION BUTTONS -->
+            <!-- ================= ACTION BUTTONS ================= -->
 
             <div class="action-buttons">
 
-                <button
-                    id="addToCartBtn"
-                    type="button">
-
+                <button id="addToCartBtn" type="button">
                     🛒 Add to Cart
-
                 </button>
 
-                <button
-                    id="buyNowBtn"
-                    type="button">
 
+                <button id="buyNowBtn" type="button">
                     Buy Now
-
                 </button>
 
             </div>
 
 
-            <p
-                id="cartMessage"
-                class="cart-message">
-            </p>
+            <!-- ================= CART MESSAGE ================= -->
+
+            <p id="cartMessage" class="cart-message" aria-live="polite"></p>
 
 
-            <button class="wishlist-btn">
+            <!-- ================= WISHLIST ================= -->
 
+            <button class="wishlist-btn" type="button">
                 ♡ Add to Wishlist
-
             </button>
 
 
@@ -285,34 +293,39 @@
     <footer>
 
         <h2>
-            🌾 AgriConnect
+
+            <img src="/images/logo.svg" alt="AgriConnect Logo" class="footer-logo-icon">
+
+            AgriConnect
+
         </h2>
+
 
         <p>
             Connecting Farmers Directly With Buyers.
         </p>
 
+
         <p class="copyright">
-            © 2026 AgriConnect.
+            © 2026 AgriConnect. All rights reserved.
         </p>
 
     </footer>
 
 
-    <!-- PRODUCT PRICE FOR JAVASCRIPT -->
+    <!-- ================= PRODUCT PRICE FOR JAVASCRIPT ================= -->
 
     <script>
-
-        const productPrice = <%= product.price %>;
-
+        const productPrice = Number("<%= product.price %>");
     </script>
 
 
-    <!-- YOUR EXISTING JAVASCRIPT -->
+    <!-- ================= JAVASCRIPT ================= -->
 
-<script src="/js/product-details.js"></script>
+    <script src="/js/product-details.js"></script>
 
-<script src="/js/cart-add.js"></script>
+    <script src="/js/cart-add.js"></script>
+
 </body>
 
 </html>

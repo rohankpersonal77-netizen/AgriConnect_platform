@@ -1,6 +1,19 @@
 const express = require("express");
+const mongoose = require("mongoose");
+const product = require("./models/Product");
+const User = require("./models/User");
 
 const app = express();
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+mongoose.connect("mongodb://127.0.0.1:27017/agriconnect")
+    .then(() => {
+        console.log("MongoDB connected successfully");
+    })
+    .catch((err) => {
+        console.log("MongoDB connection error:", err);
+    });
 
 
 // ================= PRODUCTS =================
@@ -193,61 +206,177 @@ app.use(express.static("public"));
 // ================= HOME =================
 
 app.get("/", (req, res) => {
+    res.render("home", {
+        featuredProducts: products
+    });
+});
 
-    res.render("home");
+// ================= ABOUT =================
 
+app.get("/about", (req, res) => {
+    res.render("about");
+});
+
+// ================= CONTACT =================
+
+app.get("/contact", (req, res) => {
+    res.render("contact", {
+        success: null
+    });
+});
+
+app.post("/contact", (req, res) => {
+    const { name, email, phone, userRole, subject, message } = req.body;
+    console.log("Contact form submission received:", { name, email, phone, userRole, subject, message });
+    
+    res.render("contact", {
+        success: "Thank you, " + (name || "there") + "! Your message has been received. Our support team will get back to you shortly."
+    });
 });
 
 
 // ================= PRODUCTS =================
 
-
 app.get("/products", (req, res) => {
+    const searchQuery = req.query.search;
+    let filteredProducts = products;
+
+    if (searchQuery) {
+        filteredProducts = products.filter(p => 
+            p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            p.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            p.description.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+    }
 
     res.render("products", {
-        products: products
+        products: filteredProducts
     });
-
 });
 
 // ================= PRODUCT DETAILS =================
 
 app.get("/products/:name", (req, res) => {
-
     const productName = req.params.name;
 
-
-    const product = products.find(
-
-        item =>
-            item.name.toLowerCase() ===
-            productName.toLowerCase()
-
+    const productItem = products.find(
+        item => item.name.toLowerCase() === productName.toLowerCase()
     );
 
-
-    if (!product) {
-
+    if (!productItem) {
         return res.status(404).send("Product not found");
-
     }
 
-
     res.render("product-details", {
-
-        product: product
-
+        product: productItem
     });
-
 });
 
 
 // ================= CART =================
 
 app.get("/cart", (req, res) => {
-
     res.render("cart");
+});
 
+
+// ================= AUTHENTICATION (LOGIN & REGISTER) =================
+
+// GET Login Page
+app.get("/login", (req, res) => {
+    res.render("login", {
+        error: null,
+        success: req.query.registered ? "Registration successful! Please log in to your account." : null
+    });
+});
+
+// POST Login Handler
+app.post("/login", async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        // Quick handle for demo credentials
+        if (
+            (email === "farmer.demo@agriconnect.org" && password === "farmer123") ||
+            (email === "buyer.demo@agriconnect.org" && password === "buyer123")
+        ) {
+            return res.render("home", {
+                user: { email, role: email.includes("farmer") ? "farmer" : "buyer" }
+            });
+        }
+
+        // Check MongoDB if connected
+        if (mongoose.connection.readyState === 1) {
+            const user = await User.findOne({ email: email.toLowerCase().trim() });
+            if (!user || user.password !== password) {
+                return res.status(400).render("login", {
+                    error: "Invalid email or password. Please try again.",
+                    success: null
+                });
+            }
+            return res.render("home", { user });
+        }
+
+        // Demo fallback if MongoDB is not running locally
+        return res.render("home", {
+            user: { email, role: "user" }
+        });
+    } catch (err) {
+        console.error("Login error:", err);
+        res.status(500).render("login", {
+            error: "An unexpected error occurred. Please try again later.",
+            success: null
+        });
+    }
+});
+
+// GET Register Page
+app.get("/register", (req, res) => {
+    res.render("register", {
+        error: null
+    });
+});
+
+// POST Register Handler
+app.post("/register", async (req, res) => {
+    try {
+        const { fullName, email, password, confirmPassword, role, phone, farmLocation, address } = req.body;
+
+        if (password !== confirmPassword) {
+            return res.status(400).render("register", {
+                error: "Passwords do not match. Please try again."
+            });
+        }
+
+        // Check MongoDB if connected
+        if (mongoose.connection.readyState === 1) {
+            const existingUser = await User.findOne({ email: email.toLowerCase().trim() });
+            if (existingUser) {
+                return res.status(400).render("register", {
+                    error: "An account with this email already exists. Please log in."
+                });
+            }
+
+            const newUser = new User({
+                fullName,
+                email: email.toLowerCase().trim(),
+                password, // In production app, use bcrypt hashing
+                role: role || "buyer",
+                phone,
+                farmLocation,
+                address
+            });
+
+            await newUser.save();
+        }
+
+        res.redirect("/login?registered=true");
+    } catch (err) {
+        console.error("Registration error:", err);
+        res.status(500).render("register", {
+            error: "Registration failed. Please check your information and try again."
+        });
+    }
 });
 
 
