@@ -195,88 +195,62 @@
 
     <section class="products" id="productGrid">
 
-
         <% products.forEach(product => { %>
-
 
             <div
                 class="product-card"
                 data-category="<%= product.category.toLowerCase() %>"
             >
 
-
                 <!-- PRODUCT IMAGE -->
-
                 <div class="product-image">
-
                     <img
                         src="<%= product.image %>"
                         alt="<%= product.name %>"
+                        loading="lazy"
                     >
-
-                    <span class="product-tag">
-                        Fresh
-                    </span>
-
                 </div>
 
-
                 <!-- PRODUCT CONTENT -->
-
                 <div class="product-content">
-
-
                     <span class="product-category">
-
                         <%= product.category %>
-
                     </span>
 
-
                     <h2>
-
                         <%= product.name %>
-
                     </h2>
 
-
                     <p>
-
                         <%= product.description %>
-
                     </p>
 
+                    <div class="product-perks">
+                        <span class="perk-chip">🌱 Pesticide Free</span>
+                        <span class="perk-chip">⚡ Fresh Harvest</span>
+                    </div>
 
                     <div class="product-bottom">
-
-
-                        <strong>
-
-                            ₹<%= product.price %> / kg
-
-                        </strong>
-
+                        <div class="price-box">
+                            <span class="price-caption">Direct Price</span>
+                            <div class="price-value">
+                                <span class="currency">₹</span><span class="amount"><%= product.price %></span>
+                                <span class="unit">/ kg</span>
+                            </div>
+                        </div>
 
                         <a
                             href="/products/<%= product.name.toLowerCase() %>"
                             class="view-btn">
-
-                            View Product →
-
+                            <span>View Details</span>
+                            <span class="btn-arrow">→</span>
                         </a>
-
-
                     </div>
-
-
                 </div>
-
 
             </div>
 
-
         <% }) %>
-
 
     </section>
 

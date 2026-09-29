@@ -36,11 +36,6 @@
     <!-- Hero Section with Background Image -->
     <section class="hero-revamped" style="background-image: linear-gradient(180deg, rgba(15, 23, 42, 0.45) 0%, rgba(15, 23, 42, 0.75) 100%), url('/images/hero-bg.jpg');">
         <div class="hero-glass-container">
-            
-            <div class="hero-badge">
-                <span class="pulse-dot"></span>
-                <span>FARM TO MARKET DIRECT PLATFORM</span>
-            </div>
 
             <h1>Connecting Farmers <span>Directly With Buyers</span></h1>
             
@@ -227,10 +222,9 @@
 
         <div class="products" id="featuredGrid">
             <% featuredProducts.slice(0, 4).forEach(product => { %>
-                <div class="product-card">
+                <div class="product-card" data-category="<%= product.category.toLowerCase() %>">
                     <div class="product-image">
-                        <img src="<%= product.image %>" alt="<%= product.name %>">
-                        <span class="product-tag">Direct Farm</span>
+                        <img src="<%= product.image %>" alt="<%= product.name %>" loading="lazy">
                     </div>
 
                     <div class="product-content">
@@ -238,9 +232,23 @@
                         <h2><%= product.name %></h2>
                         <p><%= product.description %></p>
 
+                        <div class="product-perks">
+                            <span class="perk-chip">🌱 Pesticide Free</span>
+                            <span class="perk-chip">⚡ Fresh Harvest</span>
+                        </div>
+
                         <div class="product-bottom">
-                            <strong>₹<%= product.price %> / kg</strong>
-                            <a href="/products/<%= product.name.toLowerCase() %>" class="view-btn">View Product →</a>
+                            <div class="price-box">
+                                <span class="price-caption">Direct Price</span>
+                                <div class="price-value">
+                                    <span class="currency">₹</span><span class="amount"><%= product.price %></span>
+                                    <span class="unit">/ kg</span>
+                                </div>
+                            </div>
+                            <a href="/products/<%= product.name.toLowerCase() %>" class="view-btn">
+                                <span>View Details</span>
+                                <span class="btn-arrow">→</span>
+                            </a>
                         </div>
                     </div>
                 </div>
